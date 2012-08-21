@@ -1,0 +1,25 @@
+base: &base
+  login_email: 'EMAIL'
+  login_password: 'PASS'
+  partner_id: 'PARTNER_ID'
+  subpartner_id: 'PARTNER_ID * 100'
+  admin_secret: 'KEY'
+  user_secret: 'KEY'
+  thumb_width: '300'
+  thumb_height: '300'
+  player_conf_id: '1339442'
+  service_url: 'http://www.kaltura.com'
+  timeout: '1000'
+  debug: true
+
+
+development:
+  <<: *base
+
+test:
+  <<: *base
+
+
+production:
+  <<: *base
+

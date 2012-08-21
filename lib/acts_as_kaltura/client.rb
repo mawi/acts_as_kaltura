@@ -66,7 +66,6 @@ module ActsAsKaltura
 
       def create_kaltura_client(configs)
         config = _create_kaltura_config(configs)
-
         Kaltura::Client.new(config).tap do |client|
           session   = client.session_service.start(
               configs[:admin_secret], '',
@@ -79,7 +78,7 @@ module ActsAsKaltura
     private
 
       def _create_kaltura_config(configs)
-        Kaltura::Configuration.new(configs[:partner_id]).tap do |config|
+        Kaltura::Configuration.new(configs[:partner_id], configs[:service_url]).tap do |config|
           if configs[:timeout].present?
             config.timeout = configs[:timeout]
           end

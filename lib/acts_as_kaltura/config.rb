@@ -39,9 +39,16 @@ module ActsAsKaltura
       #
       def kaltura_configs(env = Rails.env.to_s)
         if self._kaltura_configs.nil?
+
+            if self._kaltura_config_file.nil?
+              config = (defined?(Rails) ? Rails.root : File).join('config', 'kaltura.yml').to_s
+            else
+                config = self._kaltura_config_file
+            end
+
+
           self._kaltura_configs =
-              YAML.load(File.read(self._kaltura_config_file)).
-                  with_indifferent_access
+              YAML.load(File.read(config)).with_indifferent_access
         end
 
         self._kaltura_configs[env]
